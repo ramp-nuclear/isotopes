@@ -1,6 +1,8 @@
 #!/bin/env python
 """
 script to parse nubase file and generate standard csv.
+The NuBase2020 file can be found at (Checked 11.2.2026):
+    https://www.anl.gov/sites/www/files/2022-11/nubase_4.mas20.txt
 """
 import re
 from math import nan, inf
@@ -238,7 +240,7 @@ def parse_nubase(input, output, format):
         else:
             raise ValueError('Wrong sum of abundances')
     dn = pd.DataFrame.from_dict(dn, orient='index')
-    dg = dg.append(dn).sort_index()
+    dg = pd.concat((dg, dn)).sort_index()
     dg.to_csv(output)
 
 
