@@ -51,7 +51,7 @@ class ZAID(int):
     def __new__(cls, Z: int, A: int, m: int, /):
         if Z < 0:
             raise ValueError(f"{Z=} must be non-negative.")
-        if A not in (r := range(999)):
+        if A not in (r := range(1000)):
             raise ValueError(f"{A=} must be in {r}.")
         if m not in (r := range(10)):
             raise ValueError(f"{m=} must be in {r}.")
