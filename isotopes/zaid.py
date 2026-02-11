@@ -29,7 +29,7 @@ class ZAID(int):
 
     Users should be aware that not all possible ZAIDs represent objects that
     can be used in all cases. Some programs/libraries do not include data even
-    for XXXX isotopes like C14, and some ZAIDs could be used by a user for their
+    for real isotopes like C14, and some ZAIDs could be used by a user for their
     own purposes and be ill-suited when encountered by other programs.
     For example, if one's library does not contain an isotope in a mixture
     you defined, you could have a problem when using a Monte Carlo program such
