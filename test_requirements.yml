@@ -2,3 +2,4 @@ dependencies:
   - pytest
   - pytest-regressions
   - hypothesis
+  - parse
