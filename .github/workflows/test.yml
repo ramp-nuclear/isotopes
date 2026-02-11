@@ -25,10 +25,16 @@ jobs:
         environment-file: allreq.yml
         environment-name: isotopes-${{ github.run_id }}-${{ github.run_attempt }}
         post-cleanup: 'all'
-    - name: Test with pytest
+    - name: Install this package
       run: |
         pip install --no-build-isolation .
+      shell: micromamba-shell {0}
+    - name: Doctest
+      run: |
         pytest -v --doctest-modules isotopes
+      shell: micromamba-shell {0}
+    - name: Test in test directory
+      run: |
         cd tests
         pytest -v -k "not regression"
       shell: micromamba-shell {0}
