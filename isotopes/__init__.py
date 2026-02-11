@@ -23,8 +23,8 @@ Examples
 922350
 >>> H.name
 'Hydrogen'
->>> H.mass
-1.0079709420259335
+>>> f"{H.mass:.10f}"
+'1.0079709420'
 >>> H.abundance
 {H1: 0.999855, H2: 0.000145}
 >>> H3.decay

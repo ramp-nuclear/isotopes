@@ -11,9 +11,9 @@ footprint of using these isotopes.
 from functools import lru_cache
 
 import pandas as pd
-from importlib import resources
+from importlib.resources import path as resource_path
 
-from .zaid import ZAID
+from isotopes.zaid import ZAID
 
 
 class UnknownIsotopeError(ValueError):
@@ -23,7 +23,6 @@ class UnknownIsotopeError(ValueError):
     pass
 
 
-# noinspection PyInitNewSignature,PyUnresolvedReferences
 class Isotope(ZAID):
     """An Isotope is a ZAID that has special information, because it is
     actually a physical isotope, like O16 or U235. It contains physical
@@ -34,14 +33,12 @@ class Isotope(ZAID):
     objects that can be assigned nuclear properties, which is what most users
     of this package are expected to eventually want to do.
 
-    Parameters
+    See Also
+    --------
+    :class:`isotopes.zaid.ZAID`: For ZAID representation with Z, A and m
+
+    Attributes
     ----------
-    Z: int
-        Number of protons
-    A: int
-        Number of nucleons, by convention it is zero for elements.
-    m: int
-        Isomeric state, by convention 0 is the ground state, and it rises from there.
     mass: float
         Mass of a nucleus of this isotope, in unified atomic mass units (1u = 1g/mol).
         For elements, it is the abundance-weighted mass.
@@ -51,8 +48,19 @@ class Isotope(ZAID):
         Fractional natural abundance of the isotope in nature.
         For elements, this is a dictionary for its naturally occuring isotopes.
 
+    Examples
+    --------
+    >>> from math import floor
+    >>> i1 = Isotope(6, 0, 0)
+    >>> floor(i1.mass)
+    12
+    >>> i1.abundance
+    {C12: 0.9894, C13: 0.0106}
+    >>> type(i1.mass)
+    <class 'float'>
+
     """
-    with resources.as_file(resources.files(__name__).joinpath('nubase2020.csv')) as path:
+    with resource_path(__name__, "nubase2020.csv") as path:
         _df = pd.read_csv(path, index_col=0)
 
     # noinspection PyPep8Naming
@@ -60,16 +68,16 @@ class Isotope(ZAID):
     def __new__(cls, Z: int, A: int, m: int, /):
         obj = super().__new__(cls, Z, A, m)
         try:
-            obj.mass = cls._df.loc[obj]['mass']
+            obj.mass = float(cls._df.loc[obj]['mass'])
         except KeyError as e:
             raise UnknownIsotopeError(f"Unknown isotope for {(Z, A, m)=}") from e
-        obj.decay = cls._df.loc[obj]['decay']
+        obj.decay = float(cls._df.loc[obj]['decay'])
         if A == 0:
             df = cls._df[cls._df['z'] == Z].set_index(['z', 'a', 'm'])
-            obj.abundance = {Isotope(z, a, n): val for (z, a, n), val in
+            obj.abundance = {Isotope(z, a, n): float(val) for (z, a, n), val in
                              df[df['abundance'] > 0.0]['abundance'].to_dict().items()}
         else:
-            obj.abundance = cls._df.loc[obj]['abundance']
+            obj.abundance = float(cls._df.loc[obj]['abundance'])
         return obj
 
     @classmethod
