@@ -27,5 +27,6 @@ jobs:
         post-cleanup: 'all'
     - name: Test with pytest
       run: |
+        pip install --no-build-isolation .
         pytest -v -k "not regression"
       shell: micromamba-shell {0}
