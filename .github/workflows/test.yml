@@ -28,5 +28,6 @@ jobs:
     - name: Test with pytest
       run: |
         pip install --no-build-isolation .
+        cd tests
         pytest -v -k "not regression"
       shell: micromamba-shell {0}
