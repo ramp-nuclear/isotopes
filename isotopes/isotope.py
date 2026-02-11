@@ -11,7 +11,7 @@ footprint of using these isotopes.
 from functools import lru_cache
 
 import pandas as pd
-from pkg_resources import resource_filename
+from importlib import resources
 
 from .zaid import ZAID
 
@@ -52,8 +52,8 @@ class Isotope(ZAID):
         For elements, this is a dictionary for its naturally occuring isotopes.
 
     """
-    _df = pd.read_csv(resource_filename(__name__, 'nubase2020.csv'),
-                      index_col=0)
+    with resources.as_file(resources.files(__name__).joinpath('nubase2020.csv')) as path:
+        _df = pd.read_csv(path, index_col=0)
 
     # noinspection PyPep8Naming
     @lru_cache(maxsize=None)
