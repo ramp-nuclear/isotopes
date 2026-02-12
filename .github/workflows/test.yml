@@ -15,19 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Single requirements file
-      run: |
-        cp requirements.yml allreq.yml
-        tail -n +2 test_requirements.yml >> allreq.yml
-    - name: setup-micromamba
-      uses: mamba-org/setup-micromamba@v2.0.6
+    - uses: actions/setup-python@v6
       with:
-        environment-file: allreq.yml
-        environment-name: isotopes-${{ github.run_id }}-${{ github.run_attempt }}
-        post-cleanup: 'all'
+        python-version: '3.14' 
+
     - name: Install this package
       run: |
-        pip install --no-build-isolation .
+        pip install .
       shell: micromamba-shell {0}
     - name: Doctest
       run: |
