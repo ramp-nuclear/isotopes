@@ -20,7 +20,7 @@ jobs:
         python-version: '3.14' 
     - name: Install this package
       run: |
-        pip install .
+        pip install .[test]
     - name: Doctest
       run: |
         pytest -v --doctest-modules isotopes
