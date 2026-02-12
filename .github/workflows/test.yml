@@ -11,7 +11,20 @@ on:
 
 jobs:
   build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v6
+      with:
+        python-version: '3.14' 
+    - name: Install this package
+      run: |
+        pip install .
+    - name: Run and import
+      run: |
+        python3 -c "from isotopes import U235"
 
+  test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -28,3 +41,4 @@ jobs:
       run: |
         cd tests
         pytest -v -k "not regression"
+
