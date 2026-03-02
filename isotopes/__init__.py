@@ -6,7 +6,7 @@ A minimal python interface to isotope data based on NUbase 2020, and to
 integer representations of isotopes, as used by libraries such as ENDF.
 Two distinct objects are defined:
 
-- :class:`~zaid.ZAID`, which is an encoding of isotope enumeration by 
+- :class:`~zaid.ZAID`, which is an encoding of isotope enumeration by
   its atomic number (Z), nucleon number (A) and isomeric state.
 - :class:`~isotope.Isotope`, which builds upon :class:`~zaid.ZAID` and adds data
   such as mass, natural abundance and decay rates.
@@ -37,9 +37,13 @@ Examples
 
 from scipy.constants import Avogadro
 
-from ._format import _isomer_symbols, _isotope_symbols, _isotope_names
+from ._format import (
+    _isomer_symbols as _isomer_symbols,
+    _isotope_symbols as _isotope_symbols,
+    _isotope_names as _isotope_names,
+)
 from .isotope import Isotope
-from .zaid import ZAID
+from .zaid import ZAID as ZAID
 
 
 # The naming using uppercase letters here is preferable since these are known
@@ -56,7 +60,7 @@ def __getattr__(name):
     try:
         return Isotope.from_name(name)
     except (KeyError, ValueError):
-        raise AttributeError(f'module {__name__!r} has no attribute {name!r}')
+        raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
 
 
 avogadro = Avogadro * 1e-24
