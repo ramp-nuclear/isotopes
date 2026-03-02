@@ -5,16 +5,36 @@ The NuBase2020 file can be found at (Checked 11.2.2026):
     https://www.anl.gov/sites/www/files/2022-11/nubase_4.mas20.txt
 """
 import re
-from math import nan, inf
+from io import StringIO
+from math import inf, nan
 
 import numpy as np
 import pandas as pd
 import parse
 from more_itertools import unzip
-from scipy.constants import (milli, micro, nano, pico, femto, atto, zepto, kilo,
-                             mega, giga, tera, peta, exa, zetta, yotta, minute,
-                             day, hour, eV, atomic_mass, c)
-from io import StringIO
+from scipy.constants import (
+    atomic_mass,
+    atto,
+    c,
+    day,
+    eV,
+    exa,
+    femto,
+    giga,
+    hour,
+    kilo,
+    mega,
+    micro,
+    milli,
+    minute,
+    nano,
+    peta,
+    pico,
+    tera,
+    yotta,
+    zepto,
+    zetta,
+)
 
 isomers = {0: '',
            1: 'm',

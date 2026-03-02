@@ -9,9 +9,9 @@ footprint of using these isotopes.
 
 """
 from functools import lru_cache
+from importlib.resources import path as resource_path
 
 import pandas as pd
-from importlib.resources import path as resource_path
 
 from isotopes.zaid import ZAID
 

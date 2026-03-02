@@ -3,13 +3,15 @@
 """
 
 from functools import lru_cache
-from typing import Optional, TypeVar, Type
+from typing import Optional, Type, TypeVar
 
-from isotopes._format import (_isomer_symbols,
-                              _isotope_symbols,
-                              _isotope_names,
-                              _isotope_regex,
-                              _isotope_regex_isomer_m_format)
+from isotopes._format import (
+    _isomer_symbols,
+    _isotope_names,
+    _isotope_regex,
+    _isotope_regex_isomer_m_format,
+    _isotope_symbols,
+)
 
 T = TypeVar('T')
 

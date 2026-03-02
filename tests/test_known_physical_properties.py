@@ -4,8 +4,9 @@ If these tests break, it could be because the underlying data was updated,
 but in any other case this is probably a big no-no.
 
 """
-import isotopes
 import pytest
+
+import isotopes
 
 
 # noinspection PyPep8Naming
