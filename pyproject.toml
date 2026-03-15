@@ -10,13 +10,13 @@ authors = [
 description = "Package for lightweight representation of nuclear isotopes"
 dynamic = ["version"]
 requires-python = ">=3.11"
-license = {file = "LICENSE"}
+license = "MIT"
+license-files = ["LICENSE"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Intended Audience :: End Users/Desktop",
     "Intended Audience :: Science/Research",
-    "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
     "Topic :: Scientific/Engineering",
     "Programming Language :: Python :: 3",
@@ -24,6 +24,7 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
 ]
+keywords = ["nuclear", "isotope"]
 dependencies = [
     "bidict",
     "scipy",
@@ -38,6 +39,17 @@ test = [
     "pytest",
     "pytest-regressions"
 ]
+
+[project.urls]
+Homepage = "https://github.com/ramp-nuclear/isotopes"
+Documentation = "https://ramp-nuclear.github.io/isotopes/"
+Repository = "https://github.com/ramp-nuclear/isotopes.git"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+mypkg = ["*.csv"]
 
 [tool.setuptools.packages.find]
 include = ['isotopes*']
