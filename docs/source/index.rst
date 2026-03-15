@@ -6,9 +6,13 @@
 Welcome to Isotopes's documentation!
 ====================================
 
+.. automodule:: isotopes
+
 .. toctree::
+   :hidden:
    :maxdepth: 2
 
+   usage
    isotopes
    tests
 

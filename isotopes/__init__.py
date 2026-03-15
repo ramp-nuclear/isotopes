@@ -1,7 +1,4 @@
 r"""
-Isotopes
-========
-
 A minimal python interface to isotope data based on NUbase 2020, and to
 integer representations of isotopes, as used by libraries such as ENDF.
 Two distinct objects are defined:
