@@ -9,7 +9,7 @@ footprint of using these isotopes.
 
 """
 from functools import lru_cache
-from importlib.resources import path as resource_path
+from importlib.resources import as_file, files
 
 import pandas as pd
 
@@ -60,7 +60,7 @@ class Isotope(ZAID):
     <class 'float'>
 
     """
-    with resource_path("isotopes", "nubase2020.csv") as path:
+    with as_file(files("isotopes").joinpath("nubase2020.csv")) as path:
         _df = pd.read_csv(path, index_col=0)
 
     # noinspection PyPep8Naming
