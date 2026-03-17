@@ -60,7 +60,7 @@ class Isotope(ZAID):
     <class 'float'>
 
     """
-    with resource_path(__name__, "nubase2020.csv") as path:
+    with resource_path("isotopes", "nubase2020.csv") as path:
         _df = pd.read_csv(path, index_col=0)
 
     # noinspection PyPep8Naming
