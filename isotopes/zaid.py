@@ -1,7 +1,3 @@
-"""A ZAID
-
-"""
-
 from functools import lru_cache
 from typing import Optional, Type, TypeVar
 
@@ -45,7 +41,12 @@ class ZAID(int):
         The total number of nucleons.
     m: int
         The isomeric state of the nucleus. 0 is the ground state, and up it goes.
-        See the wikipedia page on the subject of isomers.
+        See the wikipedia page on the subject of `isomers <isomers_>`_.
+
+    References
+    ----------
+    .. _isomers: https://en.wikipedia.org/wiki/Isomer
+
     """
 
     # noinspection PyInitNewSignature
